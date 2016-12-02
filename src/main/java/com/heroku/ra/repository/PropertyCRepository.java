@@ -5,20 +5,20 @@
 
 package com.heroku.ra.repository;
 
-import com.heroku.ra.entities.ResortActivityC ;
+import com.heroku.ra.entities.PropertyC ;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 
 
 /**
- * Spring JPA Repository for ResortActivityC
+ * Spring JPA Repository for PropertyC
  * 
  * @author Telosys Tools Generator
  *
  */
-public interface ResortActivityCRepository extends PagingAndSortingRepository<ResortActivityC, Integer> {
-		ResortActivityC findBySfid(String sfid);
+public interface PropertyCRepository extends PagingAndSortingRepository<PropertyC, Integer> {
+		PropertyC findBySfid(String sfid);
 
 
 }

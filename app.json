@@ -1,0 +1,18 @@
+{
+  "name": "Michaels POC demo services",
+  "description": "Services for the POC mobile app",
+  "website": "https://github.com/rt-heroku/michaels-services",
+  "repository": "https://github.com/rt-heroku/michaels-services",
+  "logo": "https://upload.wikimedia.org/wikipedia/en/0/0e/Michaels_Logo.svg",
+  "scripts": {},
+  "env": {
+    "DW_CLIENTID": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "DW_ROOT_CATEGORY": "root",
+    "DW_URL": "http:",
+    "DW_USERNAME": "username",
+    "DE_PASSWORD": "password",
+    "DW_API_VERSION": "v16_4"
+  },
+  "addons": ["heroku-postgresql"]
+}
+

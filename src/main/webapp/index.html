@@ -53,7 +53,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; 2016</p>
+                    <p>Copyright &copy; 2016 - Heroku</p>
                 </div>
             </div>
         </footer>
