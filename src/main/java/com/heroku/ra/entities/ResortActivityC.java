@@ -369,7 +369,7 @@ public class ResortActivityC implements Serializable
     {
         this.isdeleted = isdeleted;
     }
-    @JsonProperty("is_deleted")
+    @JsonProperty("deleted")
     public Boolean getIsdeleted()
     {
         return this.isdeleted;
