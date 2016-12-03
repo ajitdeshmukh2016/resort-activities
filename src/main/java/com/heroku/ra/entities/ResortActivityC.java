@@ -148,14 +148,17 @@ public class ResortActivityC implements Serializable
     @Column(name="lastactivitydate")
     private Date       lastactivitydate ;
 
+    @JsonProperty("activity_end")
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_end__c")
     private Date       activityEndC ;
 
+	@JsonIgnore
     @Column(name="_hc_lastop", length=32)
     private String     hcLastop     ;
 
+    @JsonProperty("property")
     @Column(name="property__c", length=18)
     private String     propertyC    ;
 
@@ -523,7 +526,6 @@ public class ResortActivityC implements Serializable
     {
         this.activityEndC = activityEndC;
     }
-    @JsonProperty("activity_end")
     public Date getActivityEndC()
     {
         return this.activityEndC;
@@ -534,7 +536,6 @@ public class ResortActivityC implements Serializable
     {
         this.hcLastop = hcLastop;
     }
-    @JsonIgnore
     public String getHcLastop()
     {
         return this.hcLastop;
@@ -545,7 +546,6 @@ public class ResortActivityC implements Serializable
     {
         this.propertyC = propertyC;
     }
-    @JsonProperty("property")
     public String getPropertyC()
     {
         return this.propertyC;
