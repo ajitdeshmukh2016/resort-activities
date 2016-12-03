@@ -15,6 +15,11 @@ import java.util.Date;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.heroku.ra.util.json.JsonDateTimeSerializer;
+import com.heroku.ra.util.json.JsonOnlyDateSerializer;
+import com.heroku.ra.util.json.JsonOnlyTimeSerializer;
+
 /**
  * Persistent class for entity stored in table "resort_activity__c"
  *
@@ -59,14 +64,17 @@ public class ResortActivityC implements Serializable
     @Column(name="waitlisted_signups__c")
     private Double     waitlistedSignupsC ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_date__c")
     private Date       activityDateC ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_start__c")
     private Date       activityStartC ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="systemmodstamp")
     private Date       systemmodstamp ;
@@ -113,18 +121,22 @@ public class ResortActivityC implements Serializable
     @Column(name="activity_background_image_url__c", length=255)
     private String     activityBackgroundImageUrlC ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="createddate")
     private Date       createddate  ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="lastmodifieddate")
     private Date       lastmodifieddate ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.DATE)
     @Column(name="lastactivitydate")
     private Date       lastactivitydate ;
 
+	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_end__c")
     private Date       activityEndC ;
@@ -551,4 +563,16 @@ public class ResortActivityC implements Serializable
         return sb.toString(); 
     } 
 
+    
+    
+	@JsonSerialize(using = JsonOnlyDateSerializer.class)
+	public Date getStartDate() {
+		return activityStartC;
+	}
+	@JsonSerialize(using = JsonOnlyTimeSerializer.class)
+	public Date getStartTime() {
+		return activityStartC;
+	}
+
+    
 }
