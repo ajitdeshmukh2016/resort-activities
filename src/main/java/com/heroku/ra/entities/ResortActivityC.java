@@ -493,7 +493,6 @@ public class ResortActivityC implements Serializable
     {
         this.createddate = createddate;
     }
-    @JsonProperty("created_date")
     public Date getCreateddate()
     {
         return this.createddate;
