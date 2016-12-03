@@ -60,9 +60,11 @@ public class ResortActivityC implements Serializable
     //----------------------------------------------------------------------
     // ENTITY DATA FIELDS 
     //----------------------------------------------------------------------    
+    @JsonProperty("require_signup")
     @Column(name="require_signup__c")
     private Boolean    requireSignupC ;
 
+    @JsonProperty("signups")
     @Column(name="signups__c")
     private Double     signupsC     ;
 
@@ -72,6 +74,7 @@ public class ResortActivityC implements Serializable
     @Column(name="sfid", length=18)
     private String     sfid         ;
 
+    @JsonProperty("wailisted_signups")
     @Column(name="waitlisted_signups__c")
     private Double     waitlistedSignupsC ;
 
@@ -81,6 +84,7 @@ public class ResortActivityC implements Serializable
     @Column(name="activity_date__c")
 	private Date       activityDateC ;
 
+    @JsonProperty("activity_start")
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_start__c")
@@ -91,45 +95,58 @@ public class ResortActivityC implements Serializable
     @Column(name="systemmodstamp")
     private Date       systemmodstamp ;
 
+    @JsonProperty("subcategory")
     @Column(name="subcategory__c", length=255)
     private String     subcategoryC ;
 
+    @JsonProperty("category")
     @Column(name="category__c", length=255)
     private String     categoryC    ;
 
+    @JsonProperty("eligible_signups")
     @Column(name="eligible_signups__c")
     private Double     eligibleSignupsC ;
 
+    @JsonProperty("location")
     @Column(name="location__c", length=150)
     private String     locationC    ;
 
     @Column(name="isdeleted")
     private Boolean    isdeleted    ;
 
+    @JsonIgnore
     @Column(name="_hc_err", length=2147483647)
     private String     hcErr        ;
 
+    @JsonProperty("age")
     @Column(name="age__c", length=255)
     private String     ageC         ;
 
+    @JsonProperty("long_description")
     @Column(name="long_description__c", length=2147483647)
     private String     longDescriptionC ;
 
+    @JsonProperty("waitlist_available")
     @Column(name="waitlist_available__c")
     private Boolean    waitlistAvailableC ;
 
+    @JsonProperty("icon")
     @Column(name="activity_icon_url__c", length=255)
     private String     activityIconUrlC ;
 
+    @JsonProperty("short_description")
     @Column(name="short_description__c", length=200)
     private String     shortDescriptionC ;
 
+    @JsonProperty("capacity")
     @Column(name="capacity__c")
     private Double     capacityC    ;
 
+    @JsonProperty("cost")
     @Column(name="cost__c")
     private Double     costC        ;
 
+    @JsonProperty("background_image")
     @Column(name="activity_background_image_url__c", length=255)
     private String     activityBackgroundImageUrlC ;
 
@@ -212,6 +229,25 @@ public class ResortActivityC implements Serializable
 
 		return a;
 	}
+    //----------------------------------------------------------------------
+    // SPECIAL JSON OUTPUT
+    //----------------------------------------------------------------------
+    
+    @JsonProperty("subject")
+    public String getSubject()
+    {
+        return this.name;
+    }
+    @JsonProperty("cost")
+    public String getCost()
+    {
+    	String s = "Free";
+    	
+    	if (this.costC > 0)
+    		s = this.costC.toString();
+    	
+        return s;
+    }
 
     //----------------------------------------------------------------------
     // GETTER & SETTER FOR THE KEY FIELD
@@ -233,7 +269,6 @@ public class ResortActivityC implements Serializable
     {
         this.requireSignupC = requireSignupC;
     }
-    @JsonProperty("require_signup")
     public Boolean getRequireSignupC()
     {
         return this.requireSignupC;
@@ -244,7 +279,6 @@ public class ResortActivityC implements Serializable
     {
         this.signupsC = signupsC;
     }
-    @JsonProperty("signups")
     public Double getSignupsC()
     {
         return this.signupsC;
@@ -260,11 +294,6 @@ public class ResortActivityC implements Serializable
         return this.name;
     }
 
-    @JsonProperty("subject")
-    public String getSubject()
-    {
-        return this.name;
-    }
     //--- DATABASE MAPPING : sfid ( varchar ) 
     public void setSfid( String sfid )
     {
@@ -306,7 +335,6 @@ public class ResortActivityC implements Serializable
     	return new JsonDateTime (activityStartC);
     }
     
-    @JsonIgnore
     public Date getActivityStartC()
     {
         return this.activityStartC;
@@ -327,7 +355,6 @@ public class ResortActivityC implements Serializable
     {
         this.subcategoryC = subcategoryC;
     }
-    @JsonProperty("subcategory")
     public String getSubcategoryC()
     {
         return this.subcategoryC;
@@ -338,7 +365,6 @@ public class ResortActivityC implements Serializable
     {
         this.categoryC = categoryC;
     }
-    @JsonProperty("category")
     public String getCategoryC()
     {
         return this.categoryC;
@@ -349,7 +375,6 @@ public class ResortActivityC implements Serializable
     {
         this.eligibleSignupsC = eligibleSignupsC;
     }
-    @JsonProperty("eligible_signups")
     public Double getEligibleSignupsC()
     {
         return this.eligibleSignupsC;
@@ -361,7 +386,6 @@ public class ResortActivityC implements Serializable
         this.locationC = locationC;
     }
     
-    @JsonProperty("location")
     public String getLocationC()
     {
         return this.locationC;
@@ -372,7 +396,6 @@ public class ResortActivityC implements Serializable
     {
         this.isdeleted = isdeleted;
     }
-    @JsonProperty("deleted")
     public Boolean getIsdeleted()
     {
         return this.isdeleted;
@@ -395,7 +418,6 @@ public class ResortActivityC implements Serializable
         this.ageC = ageC;
     }
     
-    @JsonProperty("age")
     public String getAgeC()
     {
         return this.ageC;
@@ -408,7 +430,6 @@ public class ResortActivityC implements Serializable
     }
     
     
-    @JsonProperty("description")
     public String getLongDescriptionC()
     {
         return this.longDescriptionC;
@@ -419,7 +440,6 @@ public class ResortActivityC implements Serializable
     {
         this.waitlistAvailableC = waitlistAvailableC;
     }
-    @JsonProperty("waitlist_available")
     public Boolean getWaitlistAvailableC()
     {
         return this.waitlistAvailableC;
@@ -430,7 +450,6 @@ public class ResortActivityC implements Serializable
     {
         this.activityIconUrlC = activityIconUrlC;
     }
-    @JsonProperty("icon")
     public String getActivityIconUrlC()
     {
         return this.activityIconUrlC;
@@ -441,7 +460,6 @@ public class ResortActivityC implements Serializable
     {
         this.shortDescriptionC = shortDescriptionC;
     }
-    @JsonProperty("short_description")
    public String getShortDescriptionC()
     {
         return this.shortDescriptionC;
@@ -452,7 +470,6 @@ public class ResortActivityC implements Serializable
     {
         this.capacityC = capacityC;
     }
-    @JsonProperty("capacity")
     public Double getCapacityC()
     {
         return this.capacityC;
@@ -463,29 +480,18 @@ public class ResortActivityC implements Serializable
     {
         this.costC = costC;
     }
+    
     @JsonIgnore
     public Double getCostC()
     {
         return this.costC;
     }
-    
-    @JsonProperty("cost")
-    public String getCost()
-    {
-    	String s = "Free";
-    	
-    	if (this.costC > 0)
-    		s = this.costC.toString();
-    	
-        return s;
-    }
-    
+        
     //--- DATABASE MAPPING : activity_background_image_url__c ( varchar ) 
     public void setActivityBackgroundImageUrlC( String activityBackgroundImageUrlC )
     {
         this.activityBackgroundImageUrlC = activityBackgroundImageUrlC;
     }
-    @JsonProperty("background_image")
     public String getActivityBackgroundImageUrlC()
     {
         return this.activityBackgroundImageUrlC;
