@@ -13,12 +13,20 @@ import java.io.Serializable;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.heroku.ra.model.JsonDateTime;
 import com.heroku.ra.util.json.JsonDateTimeSerializer;
-import com.heroku.ra.util.json.JsonOnlyDateSerializer;
-import com.heroku.ra.util.json.JsonOnlyTimeSerializer;
 
 /**
  * Persistent class for entity stored in table "resort_activity__c"
@@ -148,6 +156,7 @@ public class ResortActivityC implements Serializable
     private String     propertyC    ;
 
 
+    private JsonDateTime date;
 
     //----------------------------------------------------------------------
     // ENTITY LINKS ( RELATIONSHIP )
@@ -161,7 +170,7 @@ public class ResortActivityC implements Serializable
 		super();
     }
 
-        public ResortActivityC update(ResortActivityC a) {
+    public ResortActivityC update(ResortActivityC a) {
 		this.id = a.id;
         this.requireSignupC = a.requireSignupC;
         this.signupsC = a.signupsC;
@@ -276,7 +285,13 @@ public class ResortActivityC implements Serializable
     public void setActivityStartC( Date activityStartC )
     {
         this.activityStartC = activityStartC;
+        this.date = new JsonDateTime (activityStartC);
     }
+
+    public JsonDateTime getDate(){
+    	return this.date;
+    }
+    
     public Date getActivityStartC()
     {
         return this.activityStartC;
@@ -562,17 +577,6 @@ public class ResortActivityC implements Serializable
         sb.append(propertyC);
         return sb.toString(); 
     } 
-
-    
-    
-	@JsonSerialize(using = JsonOnlyDateSerializer.class)
-	public Date getStartDate() {
-		return activityStartC;
-	}
-	@JsonSerialize(using = JsonOnlyTimeSerializer.class)
-	public Date getStartTime() {
-		return activityStartC;
-	}
 
     
 }
