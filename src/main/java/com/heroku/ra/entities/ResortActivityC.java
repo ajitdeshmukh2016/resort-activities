@@ -289,6 +289,7 @@ public class ResortActivityC implements Serializable
         this.date = new JsonDateTime (activityStartC);
     }
 
+    @JsonSerialize()
     public JsonDateTime getDate(){
     	return this.date;
     }
