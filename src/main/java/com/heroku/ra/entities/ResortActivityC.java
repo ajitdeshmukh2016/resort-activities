@@ -75,10 +75,11 @@ public class ResortActivityC implements Serializable
     @Column(name="waitlisted_signups__c")
     private Double     waitlistedSignupsC ;
 
+    @JsonProperty("activitydate")
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="activity_date__c")
-    private Date       activityDateC ;
+	private Date       activityDateC ;
 
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
@@ -286,7 +287,6 @@ public class ResortActivityC implements Serializable
     {
         this.activityDateC = activityDateC;
     }
-    @JsonProperty("activity_date")
     public Date getActivityDateC()
     {
         return this.activityDateC;
