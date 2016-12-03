@@ -229,6 +229,7 @@ public class ResortActivityC implements Serializable
     {
         this.requireSignupC = requireSignupC;
     }
+    @JsonProperty("require_signup")
     public Boolean getRequireSignupC()
     {
         return this.requireSignupC;
@@ -285,6 +286,7 @@ public class ResortActivityC implements Serializable
     {
         this.activityDateC = activityDateC;
     }
+    @JsonProperty("activity_date")
     public Date getActivityDateC()
     {
         return this.activityDateC;
@@ -301,6 +303,7 @@ public class ResortActivityC implements Serializable
     	return new JsonDateTime (activityStartC);
     }
     
+    @JsonIgnore
     public Date getActivityStartC()
     {
         return this.activityStartC;
@@ -343,6 +346,7 @@ public class ResortActivityC implements Serializable
     {
         this.eligibleSignupsC = eligibleSignupsC;
     }
+    @JsonProperty("eligible_signups")
     public Double getEligibleSignupsC()
     {
         return this.eligibleSignupsC;
@@ -365,6 +369,7 @@ public class ResortActivityC implements Serializable
     {
         this.isdeleted = isdeleted;
     }
+    @JsonProperty("is_deleted")
     public Boolean getIsdeleted()
     {
         return this.isdeleted;
@@ -375,6 +380,7 @@ public class ResortActivityC implements Serializable
     {
         this.hcErr = hcErr;
     }
+    @JsonIgnore
     public String getHcErr()
     {
         return this.hcErr;
@@ -410,6 +416,7 @@ public class ResortActivityC implements Serializable
     {
         this.waitlistAvailableC = waitlistAvailableC;
     }
+    @JsonProperty("waitlist_available")
     public Boolean getWaitlistAvailableC()
     {
         return this.waitlistAvailableC;
@@ -420,6 +427,7 @@ public class ResortActivityC implements Serializable
     {
         this.activityIconUrlC = activityIconUrlC;
     }
+    @JsonProperty("icon")
     public String getActivityIconUrlC()
     {
         return this.activityIconUrlC;
@@ -474,6 +482,7 @@ public class ResortActivityC implements Serializable
     {
         this.activityBackgroundImageUrlC = activityBackgroundImageUrlC;
     }
+    @JsonProperty("background_image")
     public String getActivityBackgroundImageUrlC()
     {
         return this.activityBackgroundImageUrlC;
@@ -484,6 +493,7 @@ public class ResortActivityC implements Serializable
     {
         this.createddate = createddate;
     }
+    @JsonProperty("created_date")
     public Date getCreateddate()
     {
         return this.createddate;
@@ -514,6 +524,7 @@ public class ResortActivityC implements Serializable
     {
         this.activityEndC = activityEndC;
     }
+    @JsonProperty("activity_end")
     public Date getActivityEndC()
     {
         return this.activityEndC;
