@@ -23,6 +23,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.heroku.ra.model.JsonDateTime;
@@ -155,7 +156,7 @@ public class ResortActivityC implements Serializable
     @Column(name="property__c", length=18)
     private String     propertyC    ;
 
-
+    @Transient
     private JsonDateTime date;
 
     //----------------------------------------------------------------------
