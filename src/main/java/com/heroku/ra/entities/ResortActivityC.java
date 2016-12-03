@@ -286,12 +286,11 @@ public class ResortActivityC implements Serializable
     public void setActivityStartC( Date activityStartC )
     {
         this.activityStartC = activityStartC;
-        this.date = new JsonDateTime (activityStartC);
     }
 
     @JsonSerialize()
     public JsonDateTime getDate(){
-    	return this.date;
+    	return new JsonDateTime (activityStartC);
     }
     
     public Date getActivityStartC()
