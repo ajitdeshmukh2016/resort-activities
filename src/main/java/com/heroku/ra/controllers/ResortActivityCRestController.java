@@ -24,7 +24,7 @@ import com.heroku.ra.entities.ResortActivityC;
 import com.heroku.ra.services.ResortActivityCService;
 
 @Controller
-@RequestMapping(value="/api/v1/resortactivityc")
+@RequestMapping(value="/api/v1/resortactivities")
 public class ResortActivityCRestController {
 	
 	private static Logger logger = LoggerFactory.getLogger(ResortActivityCRestController.class);
@@ -72,64 +72,6 @@ public class ResortActivityCRestController {
 		return responseMessage;
 		
 	}
-
-
-//	@RequestMapping(value="/count", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getCount() {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ResortActivityCService -> getAll");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(resortactivitycService.count());
-//		} catch (Exception e) {
-//			logger.error("ResortActivityCController -> getAll", e);
-//			responseMessage.setError(-1, "Unable to get all ResortActivityC: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
-
-//	@RequestMapping(value="/page", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getPage(@RequestParam int page,@RequestParam int size) {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ResortActivityCService -> getPage(" + page + "," + size + ")");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(resortactivitycService.getPage(page, size));
-//		} catch (Exception e) {
-//			logger.error("ResortActivityCController -> getAll", e);
-//			responseMessage.setError(-1, "Unable to get all ResortActivityC: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
-	
-//	@RequestMapping(value="/elements", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getDropDownElements() {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ResortActivityCService -> getDropDownElements");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(resortactivitycService.getDropDownValues());
-//		} catch (Exception e) {
-//			logger.error("ResortActivityCController -> getDropDownElements", e);
-//			responseMessage.setError(-1, "Unable to getDropDownElements for ResortActivityC: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
