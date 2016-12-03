@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.heroku.ra.model.JsonDateTime;
 import com.heroku.ra.util.json.JsonDateTimeSerializer;
@@ -252,6 +253,11 @@ public class ResortActivityC implements Serializable
         return this.name;
     }
 
+    @JsonProperty("subject")
+    public String getSubject()
+    {
+        return this.name;
+    }
     //--- DATABASE MAPPING : sfid ( varchar ) 
     public void setSfid( String sfid )
     {
@@ -343,6 +349,8 @@ public class ResortActivityC implements Serializable
     {
         this.locationC = locationC;
     }
+    
+    @JsonProperty("location")
     public String getLocationC()
     {
         return this.locationC;
@@ -373,6 +381,8 @@ public class ResortActivityC implements Serializable
     {
         this.ageC = ageC;
     }
+    
+    @JsonProperty("age")
     public String getAgeC()
     {
         return this.ageC;
@@ -433,11 +443,23 @@ public class ResortActivityC implements Serializable
     {
         this.costC = costC;
     }
+    
     public Double getCostC()
     {
         return this.costC;
     }
-
+    
+    @JsonProperty("cost")
+    public String getCost()
+    {
+    	String s = "free";
+    	
+    	if (this.costC > 0)
+    		s = this.costC.toString();
+    	
+        return s;
+    }
+    
     //--- DATABASE MAPPING : activity_background_image_url__c ( varchar ) 
     public void setActivityBackgroundImageUrlC( String activityBackgroundImageUrlC )
     {

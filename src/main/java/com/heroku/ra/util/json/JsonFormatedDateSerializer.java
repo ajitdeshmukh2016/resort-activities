@@ -9,13 +9,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-public class JsonOnlyYearSerializer extends JsonSerializer<Date>
+public class JsonFormatedDateSerializer extends JsonSerializer<Date>
 {
     @Override
     public void serialize(Date aDate, JsonGenerator aJsonGenerator, SerializerProvider aSerializerProvider)
             throws IOException, JsonProcessingException {
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd hh:mma");
         String dateString = dateFormat.format(aDate);
         aJsonGenerator.writeString(dateString);
     }
