@@ -25,6 +25,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.heroku.ra.model.JsonDateTime;
@@ -238,6 +239,7 @@ public class ResortActivityC implements Serializable
     {
         this.signupsC = signupsC;
     }
+    @JsonProperty("signups")
     public Double getSignupsC()
     {
         return this.signupsC;
@@ -319,6 +321,7 @@ public class ResortActivityC implements Serializable
     {
         this.subcategoryC = subcategoryC;
     }
+    @JsonProperty("subcategory")
     public String getSubcategoryC()
     {
         return this.subcategoryC;
@@ -329,6 +332,7 @@ public class ResortActivityC implements Serializable
     {
         this.categoryC = categoryC;
     }
+    @JsonProperty("category")
     public String getCategoryC()
     {
         return this.categoryC;
@@ -393,6 +397,9 @@ public class ResortActivityC implements Serializable
     {
         this.longDescriptionC = longDescriptionC;
     }
+    
+    
+    @JsonProperty("description")
     public String getLongDescriptionC()
     {
         return this.longDescriptionC;
@@ -423,7 +430,8 @@ public class ResortActivityC implements Serializable
     {
         this.shortDescriptionC = shortDescriptionC;
     }
-    public String getShortDescriptionC()
+    @JsonProperty("short_description")
+   public String getShortDescriptionC()
     {
         return this.shortDescriptionC;
     }
@@ -433,6 +441,7 @@ public class ResortActivityC implements Serializable
     {
         this.capacityC = capacityC;
     }
+    @JsonProperty("capacity")
     public Double getCapacityC()
     {
         return this.capacityC;
@@ -443,7 +452,7 @@ public class ResortActivityC implements Serializable
     {
         this.costC = costC;
     }
-    
+    @JsonIgnore
     public Double getCostC()
     {
         return this.costC;
@@ -452,7 +461,7 @@ public class ResortActivityC implements Serializable
     @JsonProperty("cost")
     public String getCost()
     {
-    	String s = "free";
+    	String s = "Free";
     	
     	if (this.costC > 0)
     		s = this.costC.toString();
@@ -515,6 +524,7 @@ public class ResortActivityC implements Serializable
     {
         this.hcLastop = hcLastop;
     }
+    @JsonIgnore
     public String getHcLastop()
     {
         return this.hcLastop;
@@ -525,6 +535,7 @@ public class ResortActivityC implements Serializable
     {
         this.propertyC = propertyC;
     }
+    @JsonProperty("property")
     public String getPropertyC()
     {
         return this.propertyC;
