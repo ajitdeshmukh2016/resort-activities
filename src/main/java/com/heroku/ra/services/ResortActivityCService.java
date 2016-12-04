@@ -120,17 +120,17 @@ public class ResortActivityCService
 			after = c.getTime();
 			
 			SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 	
 			System.out.println("TODAY [] - " + todayFormat.format(today));
-			System.out.println("AFTER [] - " + afterFormat.format(today));
+			System.out.println("AFTER [] - " + afterFormat.format(after));
 	
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
 			
 			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
 			
-			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, after);
+			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, endOfToday);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
