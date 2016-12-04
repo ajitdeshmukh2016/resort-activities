@@ -5,6 +5,7 @@
 
 package com.heroku.ra.services;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -110,17 +111,30 @@ public class ResortActivityCService
 
 	public List<ResortActivityC> getToday(){
 		Date today = new Date();
-		Calendar c = Calendar.getInstance(); 
-		c.setTime(today); 
-		c.add(Calendar.DATE, 1);
-		Date after = c.getTime();
-		
-		SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/mm/dd hh:mm:aa");
-		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/mm/dd hh:mm:aa");
-		System.out.println("TODAY [] - " + todayFormat.format(today));
-		System.out.println("AFTER [] - " + afterFormat.format(today));
-		
-		return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, after);
+		Date after = new Date();
+		Date endOfToday;
+		try {
+			Calendar c = Calendar.getInstance(); 
+			c.setTime(today); 
+			c.add(Calendar.DATE, 1);
+			after = c.getTime();
+			
+			SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
+			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+	
+			System.out.println("TODAY [] - " + todayFormat.format(today));
+			System.out.println("AFTER [] - " + afterFormat.format(today));
+	
+			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
+			
+			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
+			
+			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, after);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

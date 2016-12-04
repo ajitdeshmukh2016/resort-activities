@@ -66,7 +66,8 @@ public class PersistenceConfig {
 		factory.setDataSource(dataSource());		
 		factory.setJpaVendorAdapter(vendorAdapter);
 		factory.setPackagesToScan("com.heroku.ra.entities");
-
+System.out.println("db = " + db);
+System.out.println("hbm2ddl = " + env.getProperty(db + "hibernate.hbm2ddl.auto"));
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty(db + "hibernate.hbm2ddl.auto"));
 		jpaProperties.put("hibernate.dialect", env.getProperty(db + "hibernate.dialect"));
