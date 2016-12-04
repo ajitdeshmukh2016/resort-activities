@@ -111,21 +111,11 @@ public class ResortActivityCService
 
 	public List<ResortActivityC> getToday(){
 		Date today = new Date();
-//		Date after = new Date();
 		Date startOfToday;
 		Date endOfToday;
 		try {
-//			Calendar c = Calendar.getInstance(); 
-//			c.setTime(today); 
-//			c.add(Calendar.DATE, 1);
-//			after = c.getTime();
-			
-//			SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
-//			System.out.println("TODAY [] - " + todayFormat.format(today));
-//			System.out.println("AFTER [] - " + afterFormat.format(after));
 	
 			startOfToday = afterFormat.parse(dateFormat.format(today) + " 00:00:00");
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
@@ -133,7 +123,7 @@ public class ResortActivityCService
 			System.out.println("START OF TODAY ---- " + afterFormat.format(startOfToday));
 			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
 			
-			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, endOfToday);
+			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(startOfToday, endOfToday);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
