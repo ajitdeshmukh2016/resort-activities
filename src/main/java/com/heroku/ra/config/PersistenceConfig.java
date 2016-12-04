@@ -71,6 +71,8 @@ System.out.println("hbm2ddl = " + env.getProperty(db + "hibernate.hbm2ddl.auto")
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty(db + "hibernate.hbm2ddl.auto"));
 		jpaProperties.put("hibernate.dialect", env.getProperty(db + "hibernate.dialect"));
+		jpaProperties.put("hibernate.show_sql", env.getProperty(db + "hibernate.show_sql"));
+		
 		if (env.getProperty("hibernate.default_schema") != null)
 			jpaProperties.put("hibernate.default_schema", env.getProperty(db + "hibernate.default_schema"));
 		
