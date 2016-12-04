@@ -65,7 +65,7 @@ public class ResortActivityCRestController {
 		
 		ResponseMessage responseMessage = new ResponseMessage();
 		try {
-			ResortActivities ra = new ResortActivities(resortactivitycService.findAll(), resortactivitycService.findAll());
+			ResortActivities ra = new ResortActivities(resortactivitycService.getToday(), resortactivitycService.findAll());
 			responseMessage.setData(ra);
 			
 		} catch (Exception e) {

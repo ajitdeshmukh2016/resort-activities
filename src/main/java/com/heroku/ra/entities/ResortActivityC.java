@@ -42,7 +42,8 @@ import com.heroku.ra.util.json.JsonDateTimeSerializer;
 @Table(name="resort_activity__c", schema="salesforce" )
 // Define named queries here
 @NamedQueries ( {
-  @NamedQuery ( name="ResortActivityC.countAll", query="SELECT COUNT(x) FROM ResortActivityC x" )
+  @NamedQuery ( name="ResortActivityC.countAll", query="SELECT COUNT(x) FROM ResortActivityC x" ),
+  @NamedQuery ( name="ResortActivityC.getToday", query="SELECT x FROM ResortActivityC x WHERE x.activityStartC = CURRENT_DATE" )
 } )
 public class ResortActivityC implements Serializable
 {

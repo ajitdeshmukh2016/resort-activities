@@ -5,6 +5,8 @@
 
 package com.heroku.ra.services;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,5 +105,9 @@ public class ResortActivityCService
 		return elementToDelete;
 	}
 
+	public List<ResortActivityC> getToday(){
+		return resortactivitycRepository.getToday();
+	}
+	
 }
 

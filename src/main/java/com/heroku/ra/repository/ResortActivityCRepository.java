@@ -5,9 +5,11 @@
 
 package com.heroku.ra.repository;
 
-import com.heroku.ra.entities.ResortActivityC ;
+import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.heroku.ra.entities.ResortActivityC ;
 
 
 
@@ -19,6 +21,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface ResortActivityCRepository extends PagingAndSortingRepository<ResortActivityC, Integer> {
 		ResortActivityC findBySfid(String sfid);
-
-
+		List<ResortActivityC> getToday();
+		
 }
