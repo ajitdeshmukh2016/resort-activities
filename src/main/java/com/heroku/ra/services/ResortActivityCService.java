@@ -132,7 +132,7 @@ public class ResortActivityCService
 			System.out.println("START OF TODAY ---- " + afterFormat.format(startOfToday));
 			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
 			
-			return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(startOfToday, endOfToday);
+			return resortactivitycRepository.findByActivityStartCBefore(endOfToday);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
