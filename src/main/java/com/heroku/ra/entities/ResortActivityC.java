@@ -122,7 +122,7 @@ public class ResortActivityC implements Serializable
     @Column(name="age__c", length=255)
     private String     ageC         ;
 
-    @JsonProperty("long_description")
+    @JsonProperty("description")
     @Column(name="long_description__c", length=2147483647)
     private String     longDescriptionC ;
 
@@ -244,7 +244,7 @@ public class ResortActivityC implements Serializable
     	String s = "Free";
     	
     	if (this.costC > 0)
-    		s = this.costC.toString();
+    		s = "$" + this.costC.intValue();
     	
         return s;
     }
