@@ -122,7 +122,7 @@ public class ResortActivityCService
 			
 //			SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 //			System.out.println("TODAY [] - " + todayFormat.format(today));
 //			System.out.println("AFTER [] - " + afterFormat.format(after));
