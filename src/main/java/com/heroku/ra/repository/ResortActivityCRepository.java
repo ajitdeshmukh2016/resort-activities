@@ -5,6 +5,7 @@
 
 package com.heroku.ra.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -22,5 +23,5 @@ import com.heroku.ra.entities.ResortActivityC ;
 public interface ResortActivityCRepository extends PagingAndSortingRepository<ResortActivityC, Integer> {
 		ResortActivityC findBySfid(String sfid);
 		List<ResortActivityC> getToday();
-		
+		List<ResortActivityC> findByActivityStartCAfter(Date date);
 }

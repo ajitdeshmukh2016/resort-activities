@@ -5,6 +5,7 @@
 
 package com.heroku.ra.services;
 
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -106,7 +107,8 @@ public class ResortActivityCService
 	}
 
 	public List<ResortActivityC> getToday(){
-		return resortactivitycRepository.getToday();
+		Date date = new Date();
+		return resortactivitycRepository.findByActivityStartCAfter(date);
 	}
 	
 }
