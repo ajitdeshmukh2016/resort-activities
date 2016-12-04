@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.heroku.ra.model.ResponseMessage;
+import com.heroku.ra.dto.ResortActivities;
 import com.heroku.ra.entities.ResortActivityC;
 import com.heroku.ra.services.ResortActivityCService;
 
@@ -47,6 +48,26 @@ public class ResortActivityCRestController {
 		ResponseMessage responseMessage = new ResponseMessage();
 		try {
 			responseMessage.setData(resortactivitycService.findAll());
+		} catch (Exception e) {
+			logger.error("ResortActivityCController -> getAll", e);
+			responseMessage.setError(-1, "Unable to get page for ResortActivityC: " + e.getMessage());
+		}
+		return responseMessage;
+	}
+
+	@RequestMapping(value="/mine", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseMessage getAllMyActivities() {
+
+		if (logger.isDebugEnabled())
+			logger.debug("ResortActivityCService -> getPage");
+		
+		ResponseMessage responseMessage = new ResponseMessage();
+		try {
+			ResortActivities ra = new ResortActivities(resortactivitycService.findAll(), resortactivitycService.findAll());
+			responseMessage.setData(ra);
+			
 		} catch (Exception e) {
 			logger.error("ResortActivityCController -> getAll", e);
 			responseMessage.setError(-1, "Unable to get page for ResortActivityC: " + e.getMessage());
