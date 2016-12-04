@@ -24,4 +24,5 @@ public interface ResortActivityCRepository extends PagingAndSortingRepository<Re
 		ResortActivityC findBySfid(String sfid);
 		List<ResortActivityC> getToday();
 		List<ResortActivityC> findByActivityStartCAfter(Date date);
+		List<ResortActivityC> findByActivityStartCAfterAndActivityStartCBefore(Date before, Date after);
 }

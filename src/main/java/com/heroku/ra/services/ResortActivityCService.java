@@ -5,6 +5,8 @@
 
 package com.heroku.ra.services;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -107,8 +109,18 @@ public class ResortActivityCService
 	}
 
 	public List<ResortActivityC> getToday(){
-		Date date = new Date();
-		return resortactivitycRepository.findByActivityStartCAfter(date);
+		Date today = new Date();
+		Calendar c = Calendar.getInstance(); 
+		c.setTime(today); 
+		c.add(Calendar.DATE, 1);
+		Date after = c.getTime();
+		
+		SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/mm/dd hh:mm:aa");
+		SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/mm/dd hh:mm:aa");
+		System.out.println("TODAY [] - " + todayFormat.format(today));
+		System.out.println("AFTER [] - " + afterFormat.format(today));
+		
+		return resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBefore(today, after);
 	}
 	
 }
