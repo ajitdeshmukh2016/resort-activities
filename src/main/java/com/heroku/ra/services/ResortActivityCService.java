@@ -124,7 +124,7 @@ public class ResortActivityCService
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
 			
-			return getOtherObjects(resortactivitycRepository.findByActivityStartCBefore(endOfToday));
+			return getOtherObjects(resortactivitycRepository.findByActivityStartCBeforeOrderByActivityStartCAsc(endOfToday));
 		
 		} catch (ParseException e) {
 			e.printStackTrace();
@@ -146,7 +146,7 @@ public class ResortActivityCService
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			startOfDay = afterFormat.parse(dateFormat.format(tomorrow) + " 00:00:00");
 			
-			List<ResortActivityC> a = resortactivitycRepository.findByActivityStartCAfter(startOfDay);
+			List<ResortActivityC> a = resortactivitycRepository.findByActivityStartCAfterOrderByActivityStartCAsc(startOfDay);
 			return getOtherObjects(a);
 
 		} catch (ParseException e) {

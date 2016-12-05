@@ -43,7 +43,7 @@ import com.heroku.ra.util.json.JsonDateTimeSerializer;
 // Define named queries here
 @NamedQueries ( {
   @NamedQuery ( name="ResortActivityC.countAll", query="SELECT COUNT(x) FROM ResortActivityC x" ),
-  @NamedQuery ( name="ResortActivityC.getToday", query="SELECT x FROM ResortActivityC x WHERE x.activityStartC = CURRENT_DATE" )
+  @NamedQuery ( name="ResortActivityC.getToday", query="SELECT x FROM ResortActivityC x WHERE x.activityStartC = CURRENT_DATE ORDER By x.activityStartC" )
 } )
 public class ResortActivityC implements Serializable
 {

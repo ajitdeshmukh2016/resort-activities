@@ -23,7 +23,7 @@ import com.heroku.ra.entities.ResortActivityC ;
 public interface ResortActivityCRepository extends PagingAndSortingRepository<ResortActivityC, Integer> {
 		ResortActivityC findBySfid(String sfid);
 		List<ResortActivityC> getToday();
-		List<ResortActivityC> findByActivityStartCAfter(Date date);
-		List<ResortActivityC> findByActivityStartCBefore(Date date);
+		List<ResortActivityC> findByActivityStartCAfterOrderByActivityStartCAsc(Date date);
+		List<ResortActivityC> findByActivityStartCBeforeOrderByActivityStartCAsc(Date date);
 		List<ResortActivityC> findByActivityStartCAfterAndActivityStartCBefore(Date before, Date after);
 }
