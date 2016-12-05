@@ -126,10 +126,10 @@ public class ResortActivityCService
 //			System.out.println("TODAY [] - " + todayFormat.format(today));
 //			System.out.println("AFTER [] - " + afterFormat.format(after));
 	
-			startOfToday = afterFormat.parse(dateFormat.format(today) + " 00:00:00");
+//			startOfToday = afterFormat.parse(dateFormat.format(today) + " 00:00:00");
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
 			
-			System.out.println("START OF TODAY ---- " + afterFormat.format(startOfToday));
+//			System.out.println("START OF TODAY ---- " + afterFormat.format(startOfToday));
 			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
 			
 			return resortactivitycRepository.findByActivityStartCBefore(endOfToday);

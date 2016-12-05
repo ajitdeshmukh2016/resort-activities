@@ -1,11 +1,16 @@
 package com.heroku.ra.dto;
+import java.io.Serializable;
 import java.util.Date;
 
 import com.heroku.ra.entities.PropertyC;
 import com.heroku.ra.entities.ResortActivityC;
+import com.heroku.ra.model.JsonDateTime;
 
-public class ResortActivity
+public class ResortActivity implements Serializable
 {    
+	
+	private static final long serialVersionUID = -1967739822179358207L;
+
 	private Integer    id           ;
     private Boolean    requireSignup ;
     private Double     signups     ;
@@ -34,6 +39,7 @@ public class ResortActivity
     private Date       activityEndC ;
     private String     hcLastop     ;
     private PropertyC  property    ;
+    private JsonDateTime date;
 
     public ResortActivity()
     {
@@ -70,6 +76,7 @@ public class ResortActivity
 		this.lastactivitydate = a.getLastactivitydate();
 		this.activityEndC = a.getActivityEndC();
 		this.property = getPropertyItem(a.getPropertyC());
+		this.setDate(a.getDate());
 	}
 
     private PropertyC getPropertyItem(String propertyC) {
@@ -303,6 +310,14 @@ public class ResortActivity
 
 	public void setProperty(PropertyC property) {
 		this.property = property;
+	}
+
+	public JsonDateTime getDate() {
+		return date;
+	}
+
+	public void setDate(JsonDateTime date) {
+		this.date = date;
 	}
 
 }
