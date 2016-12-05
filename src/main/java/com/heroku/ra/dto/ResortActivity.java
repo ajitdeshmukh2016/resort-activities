@@ -49,7 +49,7 @@ public class ResortActivity implements Serializable
     @Temporal(TemporalType.TIMESTAMP)
     private Date       activity_end ;
 
-    private PropertyC  property    ;
+    private Property  property    ;
     private JsonDateTime date;
 
     public ResortActivity()
@@ -71,7 +71,7 @@ public class ResortActivity implements Serializable
 		this.category = a.getCategoryC();
 		this.eligible_signups = a.getEligibleSignupsC();
 		this.location = a.getLocationC();
-		this.setSubject(a.getSubject());
+		this.subject = a.getSubject();
 		this.age = a.getAgeC();
 		this.description = a.getLongDescriptionC();
 		this.waitlist_available = a.getWaitlistAvailableC();
@@ -256,11 +256,15 @@ public class ResortActivity implements Serializable
 		this.activity_end = activityEndC;
 	}
 
-	public PropertyC getProperty() {
+	public Property getProperty() {
 		return property;
 	}
 
 	public void setProperty(PropertyC property) {
+		this.property = new Property(property);
+	}
+
+	public void setProperty(Property property) {
 		this.property = property;
 	}
 
