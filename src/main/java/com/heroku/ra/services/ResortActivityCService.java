@@ -188,8 +188,14 @@ public class ResortActivityCService
 		
 		List<ResortActivity> activities = new ArrayList<ResortActivity>();
 		
+		List<String> ids = new ArrayList<String>();
 		for (SignupC s: signups){
-			ResortActivityC ra = resortactivitycRepository.findBySfid(s.getResortActivityC());
+			ids.add(s.getResortActivityC());
+		}
+		
+		List<ResortActivityC> acts = resortactivitycRepository.findBySfidIn(ids);
+
+		for (ResortActivityC ra : acts){
 			ResortActivity r = new ResortActivity(ra);
 			r.setProperty(propertyService.findBySfid(ra.getPropertyC()));
 			activities.add(r);
