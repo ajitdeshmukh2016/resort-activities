@@ -4,7 +4,7 @@ public class ResortActivities {
 
 	Iterable<ResortActivity> today;
 	Iterable<ResortActivity> upcoming;
-	Iterable<ResortActivity> mine;
+	private Iterable<ResortActivity> mine;
 	
 	public ResortActivities(){
 		super();
@@ -13,7 +13,7 @@ public class ResortActivities {
 	public ResortActivities(Iterable<ResortActivity> mine, Iterable<ResortActivity> today, Iterable<ResortActivity> upcoming){
 		this.today = today;
 		this.upcoming = upcoming;
-		this.mine = mine;
+		this.setMine(mine);
 	}
 	
 	public Iterable<ResortActivity> getToday() {
@@ -27,6 +27,14 @@ public class ResortActivities {
 	}
 	public void setUpcoming(Iterable<ResortActivity> upcoming) {
 		this.upcoming = upcoming;
+	}
+
+	public Iterable<ResortActivity> getMine() {
+		return mine;
+	}
+
+	public void setMine(Iterable<ResortActivity> mine) {
+		this.mine = mine;
 	}
 	
 }

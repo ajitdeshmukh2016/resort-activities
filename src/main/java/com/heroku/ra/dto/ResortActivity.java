@@ -81,27 +81,23 @@ public class ResortActivity implements Serializable
 		this.cost = a.getCostC();
 		this.background_image = a.getActivityBackgroundImageUrlC();
 		this.activity_end = a.getActivityEndC();
-		this.setDate(a.getDate());
+		this.date = a.getDate();
 	}
 
-	//----------------------------------------------------------------------
-    // GETTER & SETTER FOR THE KEY FIELD
-    //----------------------------------------------------------------------
-    public void setId( Integer id )
-    {
-        this.id = id ;
-    }
-    public Integer getId()
-    {
-        return this.id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-	public Boolean getRequireSignup() {
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Boolean getRequire_signup() {
 		return require_signup;
 	}
 
-	public void setRequireSignup(Boolean requireSignup) {
-		this.require_signup = requireSignup;
+	public void setRequire_signup(Boolean require_signup) {
+		this.require_signup = require_signup;
 	}
 
 	public Double getSignups() {
@@ -120,6 +116,14 @@ public class ResortActivity implements Serializable
 		this.name = name;
 	}
 
+	public String getSubject() {
+		return subject;
+	}
+
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
 	public String getSfid() {
 		return sfid;
 	}
@@ -128,28 +132,28 @@ public class ResortActivity implements Serializable
 		this.sfid = sfid;
 	}
 
-	public Double getWaitlistedSignups() {
+	public Double getWaitlisted_signups() {
 		return waitlisted_signups;
 	}
 
-	public void setWaitlistedSignups(Double waitlistedSignups) {
-		this.waitlisted_signups = waitlistedSignups;
+	public void setWaitlisted_signups(Double waitlisted_signups) {
+		this.waitlisted_signups = waitlisted_signups;
 	}
 
-	public Date getActivityDate() {
+	public Date getActivity_date() {
 		return activity_date;
 	}
 
-	public void setActivityDate(Date activityDate) {
-		this.activity_date = activityDate;
+	public void setActivity_date(Date activity_date) {
+		this.activity_date = activity_date;
 	}
 
-	public Date getActivityStart() {
+	public Date getActivity_start() {
 		return activity_start;
 	}
 
-	public void setActivityStart(Date activityStart) {
-		this.activity_start = activityStart;
+	public void setActivity_start(Date activity_start) {
+		this.activity_start = activity_start;
 	}
 
 	public String getSubcategory() {
@@ -168,12 +172,12 @@ public class ResortActivity implements Serializable
 		this.category = category;
 	}
 
-	public Double getEligibleSignups() {
+	public Double getEligible_signups() {
 		return eligible_signups;
 	}
 
-	public void setEligibleSignups(Double eligibleSignups) {
-		this.eligible_signups = eligibleSignups;
+	public void setEligible_signups(Double eligible_signups) {
+		this.eligible_signups = eligible_signups;
 	}
 
 	public String getLocation() {
@@ -192,36 +196,36 @@ public class ResortActivity implements Serializable
 		this.age = age;
 	}
 
-	public String getLongDescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setLongDescription(String longDescription) {
-		this.description = longDescription;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Boolean getWaitlistAvailable() {
+	public Boolean getWaitlist_available() {
 		return waitlist_available;
 	}
 
-	public void setWaitlistAvailable(Boolean waitlistAvailable) {
-		this.waitlist_available = waitlistAvailable;
+	public void setWaitlist_available(Boolean waitlist_available) {
+		this.waitlist_available = waitlist_available;
 	}
 
-	public String getActivityIconUrl() {
+	public String getIcon() {
 		return icon;
 	}
 
-	public void setActivityIconUrl(String activityIconUrl) {
-		this.icon = activityIconUrl;
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
-	public String getShortDescription() {
+	public String getShort_description() {
 		return short_description;
 	}
 
-	public void setShortDescription(String shortDescription) {
-		this.short_description = shortDescription;
+	public void setShort_description(String short_description) {
+		this.short_description = short_description;
 	}
 
 	public Double getCapacity() {
@@ -240,32 +244,32 @@ public class ResortActivity implements Serializable
 		this.cost = cost;
 	}
 
-	public String getActivityBackgroundImageUrl() {
+	public String getBackground_image() {
 		return background_image;
 	}
 
-	public void setActivityBackgroundImageUrl(String activityBackgroundImageUrl) {
-		this.background_image = activityBackgroundImageUrl;
+	public void setBackground_image(String background_image) {
+		this.background_image = background_image;
 	}
 
-	public Date getActivityEndC() {
+	public Date getActivity_end() {
 		return activity_end;
 	}
 
-	public void setActivityEndC(Date activityEndC) {
-		this.activity_end = activityEndC;
+	public void setActivity_end(Date activity_end) {
+		this.activity_end = activity_end;
 	}
 
 	public Property getProperty() {
 		return property;
 	}
 
-	public void setProperty(PropertyC property) {
-		this.property = new Property(property);
-	}
-
 	public void setProperty(Property property) {
 		this.property = property;
+	}
+
+	public void setProperty(PropertyC property) {
+		this.property = new Property( property );
 	}
 
 	public JsonDateTime getDate() {
@@ -276,12 +280,8 @@ public class ResortActivity implements Serializable
 		this.date = date;
 	}
 
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }
