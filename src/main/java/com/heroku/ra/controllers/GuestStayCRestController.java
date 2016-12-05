@@ -24,7 +24,7 @@ import com.heroku.ra.model.ResponseMessage;
 import com.heroku.ra.services.GuestStayCService;
 
 @Controller
-@RequestMapping(value="/api/v1/gueststayc")
+@RequestMapping(value="/api/v1/gueststay")
 public class GuestStayCRestController {
 	
 	private static Logger logger = LoggerFactory.getLogger(GuestStayCRestController.class);

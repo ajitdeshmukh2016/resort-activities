@@ -7,6 +7,7 @@ package com.heroku.ra.services;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +20,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.heroku.ra.dto.ResortActivities;
+import com.heroku.ra.dto.ResortActivity;
 import com.heroku.ra.entities.ResortActivityC;
 import com.heroku.ra.exceptions.ResortActivityCNotFoundException;
 import com.heroku.ra.repository.ResortActivityCRepository;
@@ -31,6 +34,9 @@ public class ResortActivityCService
 	
 	@Autowired
 	private ResortActivityCRepository resortactivitycRepository;
+
+	@Autowired
+	private PropertyCService propertyService;
 		
 	/*
 	 * READ methods
@@ -109,40 +115,26 @@ public class ResortActivityCService
 		return elementToDelete;
 	}
 
-	public List<ResortActivityC> getToday(){
+	public List<ResortActivity> getToday() {
 		Date today = new Date();
-		Date startOfToday;
 		Date endOfToday;
 		try {
-//			Calendar c = Calendar.getInstance(); 
-//			c.setTime(today); 
-//			c.add(Calendar.DATE, 1);
-//			after = c.getTime();
 			
-//			SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy/MM/dd hh:mma");
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
-//			System.out.println("TODAY [] - " + todayFormat.format(today));
-//			System.out.println("AFTER [] - " + afterFormat.format(after));
-	
-//			startOfToday = afterFormat.parse(dateFormat.format(today) + " 00:00:00");
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
 			
-//			System.out.println("START OF TODAY ---- " + afterFormat.format(startOfToday));
-			System.out.println("END OF TODAY ---- " + afterFormat.format(endOfToday));
-			
-			return resortactivitycRepository.findByActivityStartCBefore(endOfToday);
+			return getOtherObjects(resortactivitycRepository.findByActivityStartCBefore(endOfToday));
+		
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	public List<ResortActivityC> getUpcoming(){
+
+	public List<ResortActivity> getUpcoming(){
 		Date today = new Date();
 		Date startOfDay;
-		Date endOfDay;
 		Date tomorrow;
 		try {
 			Calendar c = Calendar.getInstance(); 
@@ -152,17 +144,35 @@ public class ResortActivityCService
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-	
 			startOfDay = afterFormat.parse(dateFormat.format(tomorrow) + " 00:00:00");
-			endOfDay = afterFormat.parse(dateFormat.format(tomorrow) + " 23:59:59");
 			
-			System.out.println("START OF TOMORROW ---- " + afterFormat.format(startOfDay));
-			System.out.println("END OF TOMORROW ---- " + afterFormat.format(endOfDay));
-			
-			return resortactivitycRepository.findByActivityStartCAfter(startOfDay);
+			List<ResortActivityC> a = resortactivitycRepository.findByActivityStartCAfter(startOfDay);
+			return getOtherObjects(a);
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		return null;
+	}
+
+	private List<ResortActivity> getOtherObjects(List<ResortActivityC> as) {
+		List<ResortActivity> activities = new ArrayList<ResortActivity>();
+		
+		for (ResortActivityC a : as){
+			ResortActivity ra = new ResortActivity(a);
+			ra.setProperty(propertyService.findBySfid(a.getPropertyC()));
+		}
+		
+		return activities;
+	}
+
+	public ResortActivities getResortActivities() {
+		ResortActivities activities = new ResortActivities(getMine(), getToday(), getUpcoming());
+		return activities;
+	}
+
+	private Iterable<ResortActivity> getMine() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

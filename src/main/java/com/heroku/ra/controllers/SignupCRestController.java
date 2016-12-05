@@ -24,7 +24,7 @@ import com.heroku.ra.entities.SignupC;
 import com.heroku.ra.services.SignupCService;
 
 @Controller
-@RequestMapping(value="/api/v1/signupc")
+@RequestMapping(value="/api/v1/signup")
 public class SignupCRestController {
 	
 	private static Logger logger = LoggerFactory.getLogger(SignupCRestController.class);

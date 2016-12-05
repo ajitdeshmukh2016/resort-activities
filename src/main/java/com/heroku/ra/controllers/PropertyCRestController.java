@@ -24,7 +24,7 @@ import com.heroku.ra.entities.PropertyC;
 import com.heroku.ra.services.PropertyCService;
 
 @Controller
-@RequestMapping(value="/api/v1/propertyc")
+@RequestMapping(value="/api/v1/property")
 public class PropertyCRestController {
 	
 	private static Logger logger = LoggerFactory.getLogger(PropertyCRestController.class);
