@@ -118,13 +118,18 @@ public class ResortActivityCService
 	public List<ResortActivity> getToday() {
 		Date today = new Date();
 		Date endOfToday;
+		Date startOfToday;
+		
 		try {
 			
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 			SimpleDateFormat afterFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			endOfToday = afterFormat.parse(dateFormat.format(today) + " 23:59:59");
+			startOfToday =  afterFormat.parse(dateFormat.format(today) + " 00:00:00");
+						
+			List<ResortActivityC> a = resortactivitycRepository.findByActivityStartCAfterAndActivityStartCBeforeOrderByActivityStartCAsc(startOfToday, endOfToday);
 			
-			return getOtherObjects(resortactivitycRepository.findByActivityStartCBeforeOrderByActivityStartCAsc(endOfToday));
+			return getOtherObjects(a);
 		
 		} catch (ParseException e) {
 			e.printStackTrace();

@@ -25,5 +25,5 @@ public interface ResortActivityCRepository extends PagingAndSortingRepository<Re
 		List<ResortActivityC> getToday();
 		List<ResortActivityC> findByActivityStartCAfterOrderByActivityStartCAsc(Date date);
 		List<ResortActivityC> findByActivityStartCBeforeOrderByActivityStartCAsc(Date date);
-		List<ResortActivityC> findByActivityStartCAfterAndActivityStartCBefore(Date before, Date after);
+		List<ResortActivityC> findByActivityStartCAfterAndActivityStartCBeforeOrderByActivityStartCAsc(Date start, Date end);
 }
