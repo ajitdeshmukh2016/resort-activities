@@ -161,6 +161,7 @@ public class ResortActivityCService
 		for (ResortActivityC a : as){
 			ResortActivity ra = new ResortActivity(a);
 			ra.setProperty(propertyService.findBySfid(a.getPropertyC()));
+			activities.add(ra);
 		}
 		
 		return activities;
@@ -172,8 +173,8 @@ public class ResortActivityCService
 	}
 
 	private Iterable<ResortActivity> getMine() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ResortActivity> activities = new ArrayList<ResortActivity>();
+		return activities;
 	}
 }
 
