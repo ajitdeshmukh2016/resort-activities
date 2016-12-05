@@ -5,9 +5,11 @@
 
 package com.heroku.ra.repository;
 
-import com.heroku.ra.entities.SignupC ;
+import java.util.List;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.heroku.ra.entities.SignupC ;
 
 
 
@@ -19,6 +21,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface SignupCRepository extends PagingAndSortingRepository<SignupC, Integer> {
 		SignupC findBySfid(String sfid);
-
+		List<SignupC> findByContactC(String contact);
 
 }

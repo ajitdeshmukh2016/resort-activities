@@ -23,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.heroku.ra.dto.ResortActivities;
 import com.heroku.ra.dto.ResortActivity;
 import com.heroku.ra.entities.ResortActivityC;
+import com.heroku.ra.entities.SignupC;
 import com.heroku.ra.exceptions.ResortActivityCNotFoundException;
 import com.heroku.ra.repository.ResortActivityCRepository;
 
@@ -38,6 +39,9 @@ public class ResortActivityCService
 	@Autowired
 	private PropertyCService propertyService;
 		
+	@Autowired
+	private SignupCService signupCService;
+	
 	/*
 	 * READ methods
 	 */
@@ -178,8 +182,24 @@ public class ResortActivityCService
 	}
 
 	private Iterable<ResortActivity> getMine() {
+		String contact = "0034100000E73GVAAZ";
+		List<SignupC> signups = new ArrayList<SignupC>();
+		signups = signupCService.findByContact(contact);
+		
 		List<ResortActivity> activities = new ArrayList<ResortActivity>();
+		
+		for (SignupC s: signups){
+			ResortActivityC ra = resortactivitycRepository.findBySfid(s.getResortActivityC());
+			ResortActivity r = new ResortActivity(ra);
+			r.setProperty(propertyService.findBySfid(ra.getPropertyC()));
+			activities.add(r);
+		}
+		
 		return activities;
 	}
+	
+	//get waitlist
+	
+	//
 }
 

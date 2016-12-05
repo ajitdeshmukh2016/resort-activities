@@ -5,6 +5,8 @@
 
 package com.heroku.ra.services;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,14 @@ public class SignupCService
 			logger.debug("Retrieving SignupC with sfid:" + signupc);
 		
 		return signupcRepository.findBySfid(signupc);
+		
+	}
+
+	public List<SignupC> findByContact(String contact){
+		if (logger.isDebugEnabled())
+			logger.debug("Retrieving SignupCs for contact:" + contact);
+		
+		return signupcRepository.findByContactC(contact);
 		
 	}
 
