@@ -153,7 +153,7 @@ public class ContactRestController {
 			logger.error("ContactController -> create", e);
 			responseMessage.setError(-1,
 					"Unable to create Contact: " + element.getEmail() + ",Error:"  + e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		return responseMessage;
