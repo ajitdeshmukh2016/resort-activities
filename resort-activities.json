@@ -1,0 +1,98 @@
+{
+	"mappings": {
+		"config": {
+			"sf_polling_seconds": 600,
+			"access": "read_write",
+			"fields": {
+				"Activity_End__c": {
+					
+				},
+				"Waitlisted_Signups__c": {
+					
+				},
+				"Age__c": {
+					
+				},
+				"Subcategory__c": {
+					
+				},
+				"Activity_Background_Image_url__c": {
+					
+				},
+				"Long_Description__c": {
+					
+				},
+				"Signups__c": {
+					
+				},
+				"Cost__c": {
+					
+				},
+				"Location__c": {
+					
+				},
+				"Waitlist_Available__c": {
+					
+				},
+				"CreatedDate": {
+					
+				},
+				"Require_Signup__c": {
+					
+				},
+				"Activity_Start__c": {
+					
+				},
+				"Property__c": {
+					
+				},
+				"IsDeleted": {
+					
+				},
+				"Short_Description__c": {
+					
+				},
+				"Eligible_Signups__c": {
+					
+				},
+				"Name": {
+					
+				},
+				"Activity_Icon_url__c": {
+					
+				},
+				"Category__c": {
+					
+				},
+				"Capacity__c": {
+					
+				},
+				"Id": {
+					
+				},
+				"SystemModstamp": {
+					
+				}
+			},
+			"applied_at": "2016-12-02T21:14:32.725015Z",
+			"sf_notify_enabled": true,
+			"indexes": {
+				"Age__c": {
+					"unique": false
+				},
+				"Id": {
+					"unique": true
+				},
+				"SystemModstamp": {
+					"unique": false
+				}
+			},
+			"sf_max_daily_api_calls": 30000
+		},
+		"object_name": "Resort_Activity__c"
+	},
+	"connection": {
+		"app_name": "resort-activities"
+	},
+	"version": 1
+}

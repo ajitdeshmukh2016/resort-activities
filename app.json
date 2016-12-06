@@ -5,6 +5,6 @@
   "repository": "https://github.com/rt-heroku/resort-services",
   "logo": "http://res.cloudinary.com/hzxejch6p/image/upload/v1459783069/connect-logo-e18aa0d71ae466919801dd2c312239c3bb23849d9fc445c2227fe92ae40c861a_xkri0p.png",
   "scripts": {},
-  "addons": ["heroku-postgresql"]
+  "addons": ["heroku-postgresql", "herokuconnect"]
 }
 
