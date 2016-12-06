@@ -121,7 +121,7 @@ public class ContactRestController {
 	public ResponseMessage signup(@RequestBody User element) {
 
 		if (logger.isDebugEnabled())
-			logger.debug("ContactService -> create:" + element);
+			logger.debug("ContactService -> signup:" + element);
 
 		ResponseMessage responseMessage = new ResponseMessage();
 		
@@ -132,7 +132,8 @@ public class ContactRestController {
 		} catch (Exception e) {
 			logger.error("ContactController -> create", e);
 			responseMessage.setError(-1,
-					"Unable to create Contact: " + element + ",Error:"  + e.getMessage());
+					"Unable to create Contact: " + element.getEmail() + ",Error:"  + e.getMessage());
+			e.printStackTrace();
 		}
 		
 		return responseMessage;
