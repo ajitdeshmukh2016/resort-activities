@@ -90,9 +90,10 @@
 			"sf_max_daily_api_calls": 30000
 		},
 		"object_name": "Resort_Activity__c"
-	},
+	}],
 	"connection": {
-		"app_name": "resort-activities"
+		"app_name": "resort-activities",
+		"exported_at": "2016-12-06T14:26:13.612032+00:00"
 	},
 	"version": 1
 }
