@@ -10,11 +10,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.heroku.ra.entities.Contact;
 import com.heroku.ra.exceptions.ContactNotFoundException;
+import com.heroku.ra.exceptions.IncorrectPassword;
 import com.heroku.ra.repository.ContactRepository;
 
 @Service
@@ -66,7 +70,10 @@ public class ContactService
 	}
 
 	public Contact create(Contact contact) {
-
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		contact.setPassword(encoder.encode(contact.getPassword()));
+		
 		if (logger.isDebugEnabled())
 			logger.debug("ContactService -> create:" + contact);
 			
@@ -101,6 +108,50 @@ public class ContactService
 		contactRepository.delete(elementToDelete);
 
 		return elementToDelete;
+	}
+	
+	public Contact updatePassword(String email, String oldpassword, String newpassword){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		Contact c = contactRepository.findByEmail(email);
+		
+		if (c == null)
+			throw new UsernameNotFoundException(email);
+		
+		if (!encoder.matches(oldpassword, c.getPassword()))
+			throw new IncorrectPassword();
+//		c.setPassword(encoder.encode(newpassword));
+		
+		return contactRepository.save(c);
+	}
+
+	public Contact createUser(String email, String oldpassword, String newpassword){
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		Contact c = contactRepository.findByEmail(email);
+		
+		if (c == null)
+			throw new UsernameNotFoundException(email);
+		
+		if (!encoder.matches(oldpassword, c.getPassword()))
+			throw new IncorrectPassword();
+		c.setPassword(encoder.encode(newpassword));
+		
+		return contactRepository.save(c);
+	}
+
+	public Contact doLogin(String email, String password) {
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		Contact c = contactRepository.findByEmail(email);
+		
+		if (c == null)
+			throw new ContactNotFoundException(email);
+		
+		if (!encoder.matches(password, c.getPassword()))
+			throw new IncorrectPassword();
+		
+		return c;
 	}
 
 }

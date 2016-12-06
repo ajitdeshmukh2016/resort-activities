@@ -58,14 +58,14 @@ public class ResortActivityCRestController {
 	@RequestMapping(value="/mine", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseMessage getAllMyActivities() {
+	public ResponseMessage getAllMyActivities(@PathVariable String userid) {
 
 		if (logger.isDebugEnabled())
 			logger.debug("ResortActivityCService -> getPage");
 		
 		ResponseMessage responseMessage = new ResponseMessage();
 		try {
-			ResortActivities ra = resortactivitycService.getResortActivities();
+			ResortActivities ra = resortactivitycService.getResortActivities(userid);
 			responseMessage.setData(ra);
 			
 		} catch (Exception e) {

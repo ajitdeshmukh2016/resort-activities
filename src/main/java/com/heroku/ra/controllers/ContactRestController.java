@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.heroku.ra.model.ResponseMessage;
+import com.heroku.ra.dto.User;
 import com.heroku.ra.entities.Contact;
 import com.heroku.ra.services.ContactService;
 
@@ -73,63 +74,25 @@ public class ContactRestController {
 		
 	}
 
+	@RequestMapping(value="/login", method=RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseMessage login(@RequestParam String email, @RequestParam String password) {
 
-//	@RequestMapping(value="/count", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getCount() {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ContactService -> getAll");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(contactService.count());
-//		} catch (Exception e) {
-//			logger.error("ContactController -> getAll", e);
-//			responseMessage.setError(-1, "Unable to get all Contact: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
+		if (logger.isDebugEnabled())
+			logger.debug("ContactService -> login");
+		
+		ResponseMessage responseMessage = new ResponseMessage();
+		try {
+			responseMessage.setData(contactService.doLogin(email, password));
+		} catch (Exception e) {
+			logger.error("ContactController -> getPage", e);
+			responseMessage.setError(-1, "Unable to login user: " + email + " - " + e.getMessage());
+		}
+		return responseMessage;
+		
+	}
 
-//	@RequestMapping(value="/page", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getPage(@RequestParam int page,@RequestParam int size) {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ContactService -> getPage(" + page + "," + size + ")");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(contactService.getPage(page, size));
-//		} catch (Exception e) {
-//			logger.error("ContactController -> getAll", e);
-//			responseMessage.setError(-1, "Unable to get all Contact: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
-	
-//	@RequestMapping(value="/elements", method=RequestMethod.GET,
-//			produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseBody
-//	public ResponseMessage getDropDownElements() {
-//
-//		if (logger.isDebugEnabled())
-//			logger.debug("ContactService -> getDropDownElements");
-//		
-//		ResponseMessage responseMessage = new ResponseMessage();
-//		try {
-//			responseMessage.setData(contactService.getDropDownValues());
-//		} catch (Exception e) {
-//			logger.error("ContactController -> getDropDownElements", e);
-//			responseMessage.setError(-1, "Unable to getDropDownElements for Contact: " + e.getMessage());
-//		}
-//		return responseMessage;
-//		
-//	}
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}, consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
@@ -148,23 +111,24 @@ public class ContactRestController {
 		}
 		
 		return responseMessage;
-	}
-
+	}	
 	
 	/*
 	 * DML Methods
 	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseMessage create(@RequestBody Contact element) {
+	public ResponseMessage signup(@RequestBody User element) {
 
 		if (logger.isDebugEnabled())
 			logger.debug("ContactService -> create:" + element);
 
 		ResponseMessage responseMessage = new ResponseMessage();
 		
+		Contact c = element.toContact();
+		
 		try {
-			responseMessage.setData(contactService.create(element));
+			responseMessage.setData(contactService.create(c));
 		} catch (Exception e) {
 			logger.error("ContactController -> create", e);
 			responseMessage.setError(-1,
@@ -173,7 +137,7 @@ public class ContactRestController {
 		
 		return responseMessage;
 	}
-
+	
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseMessage edit(@PathVariable Integer id, @RequestBody Contact element) {

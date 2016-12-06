@@ -176,13 +176,12 @@ public class ResortActivityCService
 		return activities;
 	}
 
-	public ResortActivities getResortActivities() {
-		ResortActivities activities = new ResortActivities(getMine(), getToday(), getUpcoming());
+	public ResortActivities getResortActivities(String contact) {
+		ResortActivities activities = new ResortActivities(getMine(contact), getToday(), getUpcoming());
 		return activities;
 	}
 
-	private Iterable<ResortActivity> getMine() {
-		String contact = "0034100000E73GVAAZ";
+	private Iterable<ResortActivity> getMine(String contact) {
 		List<SignupC> signups = new ArrayList<SignupC>();
 		signups = signupCService.findByContact(contact);
 		

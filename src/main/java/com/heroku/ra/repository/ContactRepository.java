@@ -19,6 +19,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  */
 public interface ContactRepository extends PagingAndSortingRepository<Contact, Integer> {
 		Contact findBySfid(String sfid);
-
+		
+		Contact findByEmail(String email);
 
 }
