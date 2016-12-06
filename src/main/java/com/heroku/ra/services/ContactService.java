@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.heroku.ra.dto.UserLoginDTO;
 import com.heroku.ra.entities.Contact;
 import com.heroku.ra.exceptions.ContactNotFoundException;
 import com.heroku.ra.exceptions.IncorrectPassword;
@@ -140,15 +141,15 @@ public class ContactService
 		return contactRepository.save(c);
 	}
 
-	public Contact doLogin(String email, String password) {
+	public Contact doLogin(UserLoginDTO u) {
 		PasswordEncoder encoder = new BCryptPasswordEncoder();
 		
-		Contact c = contactRepository.findByEmail(email);
+		Contact c = contactRepository.findByEmail(u.getEmail());
 		
 		if (c == null)
-			throw new ContactNotFoundException(email);
+			throw new ContactNotFoundException(u.getEmail());
 		
-		if (!encoder.matches(password, c.getPassword()))
+		if (!encoder.matches(u.getPassword(), c.getPassword()))
 			throw new IncorrectPassword();
 		
 		return c;

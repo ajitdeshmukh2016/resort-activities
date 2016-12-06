@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.heroku.ra.model.ResponseMessage;
 import com.heroku.ra.dto.User;
+import com.heroku.ra.dto.UserLoginDTO;
 import com.heroku.ra.entities.Contact;
 import com.heroku.ra.services.ContactService;
 
@@ -84,7 +85,8 @@ public class ContactRestController {
 		
 		ResponseMessage responseMessage = new ResponseMessage();
 		try {
-			responseMessage.setData(contactService.doLogin(email, password));
+			UserLoginDTO u = new UserLoginDTO(email, password);
+			responseMessage.setData(contactService.doLogin(u));
 		} catch (Exception e) {
 			logger.error("ContactController -> getPage", e);
 			responseMessage.setError(-1, "Unable to login user: " + email + " - " + e.getMessage());
@@ -92,6 +94,24 @@ public class ContactRestController {
 		return responseMessage;
 		
 	}
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseMessage loginPost(@RequestBody UserLoginDTO u) {
+	
+	if (logger.isDebugEnabled())
+		logger.debug("ContactService -> login");
+	
+	ResponseMessage responseMessage = new ResponseMessage();
+	try {
+		responseMessage.setData(contactService.doLogin(u));
+	} catch (Exception e) {
+		logger.error("ContactController -> getPage", e);
+		responseMessage.setError(-1, "Unable to login user: " + u.getEmail() + " - " + e.getMessage());
+	}
+	return responseMessage;
+	
+}
 
 
 	@RequestMapping(value="/{id}", method=RequestMethod.GET,
