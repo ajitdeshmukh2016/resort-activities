@@ -24,10 +24,6 @@ public class ResortActivity implements Serializable
     private String     sfid         ;
     private Double     waitlisted_signups ;
 	
-    @JsonSerialize(using = JsonDateTimeSerializer.class)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date       activity_date ;
-
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
     private Date       activity_start ;
@@ -65,7 +61,6 @@ public class ResortActivity implements Serializable
 		this.name = a.getName();
 		this.sfid = a.getSfid();
 		this.waitlisted_signups = a.getWaitlistedSignupsC();
-		this.activity_date = a.getActivityDateC();
 		this.activity_start = a.getActivityStartC();
 		this.subcategory = a.getSubcategoryC();
 		this.category = a.getCategoryC();
@@ -138,14 +133,6 @@ public class ResortActivity implements Serializable
 
 	public void setWaitlisted_signups(Double waitlisted_signups) {
 		this.waitlisted_signups = waitlisted_signups;
-	}
-
-	public Date getActivity_date() {
-		return activity_date;
-	}
-
-	public void setActivity_date(Date activity_date) {
-		this.activity_date = activity_date;
 	}
 
 	public Date getActivity_start() {

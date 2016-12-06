@@ -55,13 +55,13 @@ public class ResortActivityCRestController {
 		return responseMessage;
 	}
 
-	@RequestMapping(value="/mine", method=RequestMethod.GET,
+	@RequestMapping(value="/mine/{userid}", method=RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseMessage getAllMyActivities(@PathVariable String userid) {
 
 		if (logger.isDebugEnabled())
-			logger.debug("ResortActivityCService -> getPage");
+			logger.debug("ResortActivityCService -> getAllMyActivities");
 		
 		ResponseMessage responseMessage = new ResponseMessage();
 		try {

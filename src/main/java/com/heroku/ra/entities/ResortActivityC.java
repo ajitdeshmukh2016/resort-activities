@@ -79,12 +79,6 @@ public class ResortActivityC implements Serializable
     @Column(name="waitlisted_signups__c")
     private Double     waitlistedSignupsC ;
 
-    @JsonProperty("activitydate")
-	@JsonSerialize(using = JsonDateTimeSerializer.class)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="activity_date__c")
-	private Date       activityDateC ;
-
     @JsonProperty("activity_start")
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
@@ -156,16 +150,6 @@ public class ResortActivityC implements Serializable
     @Column(name="createddate")
     private Date       createddate  ;
 
-	@JsonSerialize(using = JsonDateTimeSerializer.class)
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="lastmodifieddate")
-    private Date       lastmodifieddate ;
-
-	@JsonSerialize(using = JsonDateTimeSerializer.class)
-    @Temporal(TemporalType.DATE)
-    @Column(name="lastactivitydate")
-    private Date       lastactivitydate ;
-
     @JsonProperty("activity_end")
 	@JsonSerialize(using = JsonDateTimeSerializer.class)
     @Temporal(TemporalType.TIMESTAMP)
@@ -202,7 +186,6 @@ public class ResortActivityC implements Serializable
         this.name = a.name;
         this.sfid = a.sfid;
         this.waitlistedSignupsC = a.waitlistedSignupsC;
-        this.activityDateC = a.activityDateC;
         this.activityStartC = a.activityStartC;
         this.systemmodstamp = a.systemmodstamp;
         this.subcategoryC = a.subcategoryC;
@@ -220,8 +203,6 @@ public class ResortActivityC implements Serializable
         this.costC = a.costC;
         this.activityBackgroundImageUrlC = a.activityBackgroundImageUrlC;
         this.createddate = a.createddate;
-        this.lastmodifieddate = a.lastmodifieddate;
-        this.lastactivitydate = a.lastactivitydate;
         this.activityEndC = a.activityEndC;
         this.hcLastop = a.hcLastop;
         this.propertyC = a.propertyC;
@@ -313,16 +294,6 @@ public class ResortActivityC implements Serializable
     public Double getWaitlistedSignupsC()
     {
         return this.waitlistedSignupsC;
-    }
-
-    //--- DATABASE MAPPING : activity_date__c ( timestamp ) 
-    public void setActivityDateC( Date activityDateC )
-    {
-        this.activityDateC = activityDateC;
-    }
-    public Date getActivityDateC()
-    {
-        return this.activityDateC;
     }
 
     //--- DATABASE MAPPING : activity_start__c ( timestamp ) 
@@ -508,26 +479,6 @@ public class ResortActivityC implements Serializable
         return this.createddate;
     }
 
-    //--- DATABASE MAPPING : lastmodifieddate ( timestamp ) 
-    public void setLastmodifieddate( Date lastmodifieddate )
-    {
-        this.lastmodifieddate = lastmodifieddate;
-    }
-    public Date getLastmodifieddate()
-    {
-        return this.lastmodifieddate;
-    }
-
-    //--- DATABASE MAPPING : lastactivitydate ( date ) 
-    public void setLastactivitydate( Date lastactivitydate )
-    {
-        this.lastactivitydate = lastactivitydate;
-    }
-    public Date getLastactivitydate()
-    {
-        return this.lastactivitydate;
-    }
-
     //--- DATABASE MAPPING : activity_end__c ( timestamp ) 
     public void setActivityEndC( Date activityEndC )
     {
@@ -581,8 +532,6 @@ public class ResortActivityC implements Serializable
         sb.append("|");
         sb.append(waitlistedSignupsC);
         sb.append("|");
-        sb.append(activityDateC);
-        sb.append("|");
         sb.append(activityStartC);
         sb.append("|");
         sb.append(systemmodstamp);
@@ -616,10 +565,6 @@ public class ResortActivityC implements Serializable
         sb.append(activityBackgroundImageUrlC);
         sb.append("|");
         sb.append(createddate);
-        sb.append("|");
-        sb.append(lastmodifieddate);
-        sb.append("|");
-        sb.append(lastactivitydate);
         sb.append("|");
         sb.append(activityEndC);
         sb.append("|");
