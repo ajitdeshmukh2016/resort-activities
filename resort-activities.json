@@ -92,6 +92,7 @@
 		"object_name": "Resort_Activity__c"
 	}],
 	"connection": {
+		"organization_id": "00D410000015EhLEAU",
 		"app_name": "resort-activities",
 		"exported_at": "2016-12-06T14:26:13.612032+00:00"
 	},
