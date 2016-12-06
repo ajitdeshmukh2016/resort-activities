@@ -8,6 +8,7 @@ import { PrivacyPolicyPage } from '../privacy-policy/privacy-policy';
 
 import { TabsNavigationPage } from '../tabs-navigation/tabs-navigation';
 import { UserData } from '../../providers/user-data';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'signup-page',
@@ -18,6 +19,7 @@ export class SignupPage {
   main_page: { component: any };
 
   constructor(
+    public alertCtrl: AlertController, 
     public http: Http, public nav: NavController, 
     public modal: ModalController, public userData: UserData
   ) {
@@ -45,12 +47,12 @@ export class SignupPage {
 
     this.http.post(link, contact, options).subscribe(data => {
       let d: any;
-      d = data;
-      this.userData.login(d.email,d.sfid);
+      d = data.json();
+      this.userData.login(d.data.email,d.data.sfid);
       this.nav.setRoot(this.main_page.component);
     }, error => {
         console.log("Oooops!" + error);
-        alert(error);
+        this.showAlert(error);
     });
   }
 
@@ -71,5 +73,15 @@ export class SignupPage {
     let modal = this.modal.create(PrivacyPolicyPage);
     modal.present();
   }
+
+    showAlert(message) {
+    let alert = this.alertCtrl.create({
+      title: 'Login Error',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
 
 }

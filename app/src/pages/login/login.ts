@@ -37,14 +37,14 @@ export class LoginPage {
     var link = 'https://resort-activities.herokuapp.com/api/v1/contact/login';
     var contact : any;
     contact = JSON.stringify(this.login.value);
-
     this.http.post(link, contact, options).subscribe(data => {
       let d: any;
-      d = data;
-      this.userData.login(d.email,d.sfid);
-
-      if (d.success)
+      d = data.json();
+      if (d.success){
+        this.userData.login(d.data.email,d.data.sfid);
+        console.log('User ' + d.data.email + ' signed in successfully!');
         this.nav.setRoot(this.main_page.component);
+      }
       else
         this.showAlert(d.message);
 

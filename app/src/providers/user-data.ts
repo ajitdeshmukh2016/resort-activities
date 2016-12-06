@@ -55,6 +55,7 @@ export class UserData {
 
   getId() {
     return this.storage.get('sfid').then((value) => {
+      console.log('value  = ' + value);
       return value;
     });
   };
